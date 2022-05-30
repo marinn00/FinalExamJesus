@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace FinalExamJesus
 {
     [TestFixture]
-    public class Class1
+    public class FinalExam
     {
         IWebDriver driver;
 
@@ -14,7 +14,6 @@ namespace FinalExamJesus
         public void Setup()
         {
             driver = new ChromeDriver();
-            driver.Manage().Cookies.DeleteAllCookies();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
             driver.Manage().Window.Maximize();
             driver.Url = "https://candidatex:qa-is-cool@qa-task.backbasecloud.com/";
@@ -34,8 +33,8 @@ namespace FinalExamJesus
         [Category("Smoke Test")]
         public void SignInTest()
         {
+            SignIn();
             IWebElement profileName = driver.FindElement(By.XPath("//a[contains(text(),'cnew')]"));
-            //Console.Write(profileName.Text);
             Assert.AreEqual(profileName.Text,"cnew");
         }
 
@@ -55,8 +54,6 @@ namespace FinalExamJesus
             Assert.AreEqual(title.Text, "This is a Title");
             IWebElement author = driver.FindElement(By.ClassName("author"));
             Assert.AreEqual(author.Text, "cnew");
-            //Console.WriteLine(title.Text);
-            //Console.WriteLine(author.Text);
         }
 
         [Test, Order(3)]
